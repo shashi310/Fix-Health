@@ -51,8 +51,6 @@ const HeroSection: React.FC = () => {
     e.preventDefault();
     if (formData.mobile && formData.name && formData.city) { 
       onOpen();
-      // console.log(formData)
-      // console.log("asd");
       handleSetSearchParams()
     } else {
       alert("Please enter your details first");
@@ -225,7 +223,7 @@ const HeroSection: React.FC = () => {
               <FormControl mb={4}>
                 <Input
                   type="text"
-                  placeholder="Duration of disease"
+                  placeholder="Duration of disease in months (e.g-6 months)"
                   name="diseaseDuration"
                   value={formData.diseaseDuration}
                   onChange={handleInputChange}
