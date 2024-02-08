@@ -53,7 +53,7 @@ const DoctorsSection: React.FC = () => {
   return (
     <Box bg="gray.900" color="white" py={20} textAlign="center">
       <Heading as="h2" size="xl" mb={8}>
-        Our Doctors
+        Our Senior Most Doctors
       </Heading>
       <Flex justify="center" align="center" flexWrap="wrap">
         {doctors.map(doctor => (
