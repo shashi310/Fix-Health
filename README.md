@@ -42,7 +42,7 @@ The Fix Health application is a cutting-edge healthcare platform allowing users 
 
 # Back-end:
 
-- **Server:** []()
+- **Server:** [https://fix-health-mox9.onrender.com](https://fix-health-mox9.onrender.com)
 
 ## Screenshot
 # User Side:
