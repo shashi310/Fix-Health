@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState,useEffect } from "react";
 import {
   Heading,
   Box,
@@ -11,11 +11,25 @@ import {
 } from "@chakra-ui/react";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
-import { doctors } from "../components/DoctorsSection";
+import Loading from "../components/Loading";
+
+
+interface Doctor {
+  _id: string;
+  name: string;
+  expertise: string;
+  city: string;
+  avatarUrl: string;
+}
 
 const Appointment: React.FC = () => {
   const [showChoice, setShowChoice] = useState(true);
+  const [loading,setLoading] = useState(false);
   const storedFormData = localStorage.getItem("formData") || "";
+  const storedCityData = localStorage.getItem("searchParams") || "";
+  // console.log(storedCityData);
+ 
+
   const avatar =
     "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQuDoisN_XW3IVsEn4qXXTiqfTFBCCQOWqDFg&usqp=CAU";
   const [userData, setUserData] = useState({
@@ -61,6 +75,30 @@ const Appointment: React.FC = () => {
     xl: "Cancel Appointment",
   });
 
+
+
+  const [doctors, setDoctors] = useState<Doctor[]>([]);
+
+  const fetchData = async () => {
+    setLoading(true)
+    try {
+      const response = await fetch('https://fix-health-mox9.onrender.com/doctors');
+      if (!response.ok) {
+        throw new Error('Network response was not ok');
+      }
+      const data = await response.json();
+      console.log(data.doctors);
+      setDoctors(data.doctors);
+      setLoading(false)
+    } catch (error) {
+      console.error('Error fetching data:', error);
+      setLoading(false)
+    }
+  };
+  useEffect(() => {
+    fetchData();
+  }, []);
+
   return (
     <Box bg="gray.900" color="white" minH="100vh">
       <Navbar />
@@ -74,13 +112,17 @@ const Appointment: React.FC = () => {
           // pt={"15%"}
         >
           <Heading as="h2" size="xl" mb={8}>
-            Choose your Doctor
+            Your Choosen city is {storedCityData} <br />
+             but still you can Choose your Doctor at your convenience
           </Heading>
-          <Flex justify="center" align="center" flexWrap="wrap">
+          { loading ? (
+            <Loading />
+          ) :(
+            <Flex justify="center" align="center" flexWrap="wrap">
             {doctors.map((doctor) => (
               <Box
                 cursor={"pointer"}
-                key={doctor.id}
+                key={doctor._id}
                 maxW="sm"
                 borderWidth="1px"
                 borderRadius="lg"
@@ -105,6 +147,7 @@ const Appointment: React.FC = () => {
               </Box>
             ))}
           </Flex>
+          )}
         </Box>
       ) : (
         <Box
