@@ -42,7 +42,7 @@ const HeroSection: React.FC = () => {
     e.preventDefault();
     console.log(formData);
     localStorage.setItem("formData", JSON.stringify(formData));
-    localStorage.setItem("searchParams", JSON.stringify(searchParams));
+    // localStorage.setItem("searchParams", JSON.stringify(searchParams));
     setFormData(initialState);
     onClose();
     navigate("/appointment");
@@ -65,8 +65,12 @@ const HeroSection: React.FC = () => {
 
   useEffect(() => {
   const searchParams = new URLSearchParams(location.search);
-  // const city = searchParams.get('city');
-  // console.log('City:', city);
+  const city = searchParams.get('city');
+ if(city){
+  localStorage.setItem("searchParams", city);
+ }
+  console.log('City:', city);
+
   setSearchParams(searchParams);
   }, [location.search]);
 
