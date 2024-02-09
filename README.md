@@ -37,7 +37,7 @@ The Fix Health application is a cutting-edge healthcare platform allowing users 
 
 # Front-end:
 
-- **User Side:** []()
+- **User Side:** [https://transcendent-paletas-586628.netlify.app/](https://transcendent-paletas-586628.netlify.app/)
 
 
 # Back-end:
