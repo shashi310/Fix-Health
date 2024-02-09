@@ -32,6 +32,7 @@ The Fix Health application is a cutting-edge healthcare platform allowing users 
 - Back-end:
   - Express.js for handling server-side logic.
   - Node.js for server-side scripting and runtime environment.
+  - MongoDB for storing doctors data.
 
 ## Project Links
 
